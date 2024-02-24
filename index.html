@@ -1,0 +1,40 @@
+<html>
+
+<head>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <h1>Cloud Cafe</h1>
+
+    <div class="content">
+
+        <form id="add-cafe-form"></form>
+
+        <ul id="cafe-list"></ul>
+
+    </div>
+
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCk8ww4KYyT-Gp7ec-QnMBHOoilvX3rXig",
+            authDomain: "learning-ninja-firestore-tut.firebaseapp.com",
+            projectId: "learning-ninja-firestore-tut",
+            storageBucket: "learning-ninja-firestore-tut.appspot.com",
+            messagingSenderId: "890741015871",
+            appId: "1:890741015871:web:50749c1d01f8368399bf8a"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        // db.settings({ timestampsInSnapshots: true });
+    </script>
+    <script src="app.js"></script>
+</body>
+
+</html>
