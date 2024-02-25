@@ -45,25 +45,10 @@ const getCafes = () => {
     if (Object.hasOwn(order, 'by') && Object.hasOwn(order, 'type'))
         query = query.orderBy(order.by, order.type);
 
-
-    const initialData = (cafeList.textContent == '');
     cafeList.textContent = '';
     query.get().then((snapshot) => {
         snapshot.docs.forEach((doc) => {
             renderCafe(doc);
-
-            if (initialData) {
-                const optionName = document.createElement("option");
-                optionName.textContent = doc.data().name;
-                optionName.value = doc.data().name;
-
-                const optionCity = document.createElement("option");
-                optionCity.textContent = doc.data().city;
-                optionCity.value = doc.data().city;
-
-                formFilter['filter-name'].appendChild(optionName);
-                formFilter['filter-city'].appendChild(optionCity);
-            }
         });
     });
 }
@@ -97,4 +82,29 @@ formOrder.addEventListener('submit', (e) => {
     e.preventDefault();
 });
 
-getCafes();
+db.collection('cafes').onSnapshot((snapshot) => {
+    const initialData = (cafeList.textContent == '');
+    let changes = snapshot.docChanges();
+    changes.forEach((change) => {
+        if (change.type == 'added') {
+
+            renderCafe(change.doc);
+
+            if (initialData) {
+                const optionName = document.createElement("option");
+                optionName.textContent = change.doc.data().name;
+                optionName.value = change.doc.data().name;
+
+                const optionCity = document.createElement("option");
+                optionCity.textContent = change.doc.data().city;
+                optionCity.value = change.doc.data().city;
+
+                formFilter['filter-name'].appendChild(optionName);
+                formFilter['filter-city'].appendChild(optionCity);
+            }
+        } else if (change.type == 'removed') {
+            let li = cafeList.querySelector(`[data-id=${change.doc.id}]`);
+            cafeList.removeChild(li);
+        }
+    });
+})
