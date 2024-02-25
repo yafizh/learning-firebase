@@ -17,6 +17,32 @@
             <input type="text" name="city" placeholder="Cafe city">
             <button>Add Cafe</button>
         </form>
+        <hr>
+        <span>Filter</span>
+        <form id="filter-cafe-form">
+            <select name="filter-name">
+                <option value="" disabled selected>Choose name</option>
+            </select>
+            <select name="filter-city">
+                <option value="" disabled selected>Choose city</option>
+            </select>
+            <button>Filter Cafe</button>
+        </form>
+        <hr>
+        <span>Order</span>
+        <form id="order-cafe-form">
+            <select name="order-by" required>
+                <option value="" disabled selected>Choose</option>
+                <option value="name">Name</option>
+                <option value="city">City</option>
+            </select>
+            <select name="order-type" required>
+                <option value="" disabled selected>Choose</option>
+                <option value="asc">ASC</option>
+                <option value="desc">DESC</option>
+            </select>
+            <button>Order Cafe</button>
+        </form>
 
         <ul id="cafe-list"></ul>
 

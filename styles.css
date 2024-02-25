@@ -62,7 +62,8 @@ li div {
     cursor: pointer;
 }
 
-form input {
+form input,
+form select {
     float: left;
     width: 38%;
     margin: 0;
